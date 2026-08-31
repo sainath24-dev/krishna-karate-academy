@@ -1,0 +1,279 @@
+.dojo-stepper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.stepper-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.stepper-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--colors-canvas);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--rounded-card);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.stepper-nav-item:hover {
+  border-color: var(--colors-ink);
+}
+
+.stepper-nav-item.is-active {
+  border-color: var(--colors-primary);
+  background: var(--colors-canvas);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.stepper-nav-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--colors-canvas-soft);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.stepper-nav-item.is-active .stepper-nav-badge {
+  background: var(--colors-primary);
+  border-color: var(--colors-primary);
+  color: var(--colors-on-primary);
+}
+
+.stepper-nav-index {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.stepper-nav-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.stepper-nav-title {
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--colors-ink);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.stepper-nav-sub {
+  font-family: var(--font-family);
+  font-size: 0.8rem;
+  color: var(--colors-body);
+}
+
+.stepper-body {
+  width: 100%;
+}
+
+.stepper-content-card {
+  background: var(--colors-canvas);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--rounded-card);
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.stepper-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stepper-belt-rank-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--colors-primary);
+  border-radius: var(--rounded-pill-md);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--colors-ink);
+  text-transform: uppercase;
+}
+
+.belt-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: var(--colors-primary);
+}
+
+.stepper-card-title {
+  font-family: var(--font-family);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--colors-ink);
+  width: 100%;
+  letter-spacing: -0.4px;
+}
+
+.stepper-card-desc {
+  font-size: 1.05rem;
+  color: var(--colors-body);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.stepper-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.stepper-meta-label {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--colors-primary);
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stepper-schedule-list,
+.stepper-curriculum-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.stepper-schedule-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.schedule-day {
+  color: var(--colors-body);
+}
+
+.schedule-time {
+  color: var(--colors-ink);
+  font-weight: 600;
+}
+
+.stepper-curriculum-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--colors-ink);
+}
+
+.curriculum-bullet {
+  color: var(--colors-primary);
+  font-size: 0.75rem;
+}
+
+.stepper-target-box {
+  background: var(--colors-canvas-soft);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  border-radius: var(--rounded-sm);
+}
+
+.target-duration {
+  font-size: 1.25rem;
+  color: var(--colors-primary);
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.target-grading {
+  font-size: 0.85rem;
+  color: var(--colors-body);
+}
+
+.stepper-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn-stepper-nav {
+  background: transparent;
+  color: var(--colors-ink);
+  border: 1px solid var(--colors-ink);
+  padding: 10px 22px;
+  border-radius: var(--rounded-pill-lg);
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-stepper-nav:hover:not(:disabled) {
+  background: var(--colors-ink);
+  color: var(--colors-on-dark);
+}
+
+.btn-stepper-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn-stepper-next {
+  background: var(--colors-primary);
+  border-color: var(--colors-primary);
+  color: var(--colors-on-primary);
+}
+
+.btn-stepper-next:hover:not(:disabled) {
+  background: #cc0000 !important;
+  border-color: #cc0000 !important;
+}
+
+.stepper-progress-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--colors-mute);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.progress-dot.is-active {
+  background: var(--colors-primary);
+  width: 22px;
+  border-radius: 4px;
+}

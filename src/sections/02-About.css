@@ -1,0 +1,329 @@
+.about-section-wrapper {
+  background-color: var(--colors-canvas);
+  color: var(--colors-ink);
+  width: 100%;
+}
+
+.philosophy-heading {
+  color: var(--colors-ink);
+  margin-top: 0.5rem;
+}
+
+/* 5 Pillars Grid */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 640px) {
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pillars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pillar-card:nth-child(4) {
+    grid-column: span 1;
+  }
+  .pillar-card:nth-child(5) {
+    grid-column: span 2;
+  }
+}
+
+/* Individual Pillar Card */
+.pillar-card {
+  position: relative;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem) clamp(1.25rem, 2vw, 2rem) !important;
+  border-radius: var(--rounded-card) !important;
+  background-color: var(--colors-canvas-soft);
+  border: 1.5px solid var(--colors-border);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.pillar-card:hover,
+.pillar-card.is-active-pillar {
+  transform: translateY(-4px);
+  background-color: #ffffff;
+  border-color: var(--colors-primary);
+  box-shadow: 0 12px 30px rgba(230, 0, 0, 0.08);
+}
+
+.pillar-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.pillar-number {
+  font-family: var(--font-family);
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--colors-primary);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.pillar-title {
+  font-family: var(--font-family);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-weight: 800;
+  color: var(--colors-ink);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.3px;
+}
+
+.pillar-tagline {
+  color: var(--colors-primary);
+  margin-bottom: 0.65rem;
+}
+
+.pillar-desc {
+  color: var(--colors-body);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.pillar-bottom-bar {
+  width: 0%;
+  height: 3.5px;
+  background-color: var(--colors-primary);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+  margin-top: auto;
+}
+
+.pillar-card:hover .pillar-bottom-bar,
+.pillar-card.is-active-pillar .pillar-bottom-bar {
+  width: 100%;
+}
+
+/* Impact Highlight Strip */
+.philosophy-impact-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  background-color: #ffffff;
+  border: 1px solid var(--colors-border);
+  border-radius: var(--rounded-card);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.25rem, 2.5vw, 2rem);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+@media (min-width: 768px) {
+  .philosophy-impact-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.impact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.impact-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #fef2f2;
+  color: var(--colors-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.impact-title {
+  display: block;
+  color: var(--colors-ink);
+  font-size: clamp(14px, 1.2vw, 15px);
+  margin-bottom: 0.15rem;
+}
+
+.impact-sub {
+  color: var(--colors-body);
+  line-height: 1.35;
+  font-size: 13px;
+}
+
+/* PART 2: THE FOUNDER — 2-SECTION GRAND SHOWCASE */
+.about-founders-block {
+  margin-top: 1rem;
+}
+
+.founder-grand-card {
+  background-color: #ffffff;
+  border-radius: var(--rounded-card);
+  overflow: hidden;
+  border: 1px solid var(--colors-border);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.founder-grand-card:hover {
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.1);
+}
+
+/* UPPER SECTION: BIG HERO IMAGE */
+.founder-upper-image-section {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 42vw, 500px);
+  background-color: #111111;
+  overflow: hidden;
+}
+
+.founder-big-hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.founder-grand-card:hover .founder-big-hero-photo {
+  transform: scale(1.025);
+}
+
+.founder-image-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+.founder-floating-badge {
+  position: absolute;
+  bottom: clamp(12px, 2vw, 20px);
+  left: clamp(14px, 2.5vw, 24px);
+  z-index: 3;
+}
+
+/* LOWER SECTION: COMPREHENSIVE INFORMATION */
+.founder-lower-info-section {
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  background-color: #ffffff;
+}
+
+.founder-info-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .founder-info-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.founder-full-name {
+  font-family: var(--font-family);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--colors-ink);
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+}
+
+.founder-official-title {
+  color: var(--colors-primary);
+  margin-top: 0.25rem;
+}
+
+.founder-creds-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.founder-inner-divider {
+  margin: clamp(1.25rem, 2.5vw, 2rem) 0 !important;
+}
+
+.founder-info-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+@media (min-width: 992px) {
+  .founder-info-columns {
+    grid-template-columns: 1.35fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.story-subhead {
+  color: var(--colors-ink);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.3px;
+}
+
+.founder-story-column p {
+  margin-bottom: 1rem;
+  color: var(--colors-body);
+  line-height: 1.65;
+}
+
+.founder-story-column p:last-child {
+  margin-bottom: 0;
+}
+
+.founder-motto-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.founder-quote-box {
+  display: flex;
+  gap: 1rem;
+  background-color: var(--colors-canvas-soft);
+  border-radius: var(--rounded-card);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--colors-border);
+}
+
+.quote-red-indicator {
+  width: 4px;
+  background-color: var(--colors-primary);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  color: var(--colors-ink);
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+.quote-author {
+  color: var(--colors-primary);
+  font-weight: 700;
+}

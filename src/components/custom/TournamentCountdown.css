@@ -1,0 +1,207 @@
+.tournament-countdown-block {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.countdown-tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  justify-content: center;
+}
+
+.countdown-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--colors-canvas-soft);
+  border: 1px solid var(--colors-border);
+  border-radius: var(--rounded-pill-md);
+  padding: 7px 16px;
+  color: var(--colors-ink);
+  font-family: var(--font-family);
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.countdown-tab:hover {
+  border-color: var(--colors-primary);
+  color: var(--colors-primary);
+}
+
+.countdown-tab.is-active {
+  background: var(--colors-primary);
+  border-color: var(--colors-primary);
+  color: #ffffff;
+}
+
+.tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--colors-body);
+}
+
+.countdown-tab.is-active .tab-dot {
+  background: #ffffff;
+}
+
+.countdown-hero-card {
+  background: var(--colors-canvas);
+  border: 1px solid var(--colors-border);
+  border-radius: var(--rounded-card);
+  padding: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+}
+
+.countdown-header-info {
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.countdown-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 4px 14px;
+  border-radius: var(--rounded-pill-md);
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--colors-primary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.status-indicator-ember {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--colors-primary);
+}
+
+.countdown-event-title {
+  font-family: var(--font-family);
+  font-size: clamp(1.3rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: var(--colors-ink);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.4px;
+}
+
+.countdown-event-sub {
+  color: var(--colors-body);
+  font-size: clamp(14px, 1.2vw, 16px);
+}
+
+.countdown-digits-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.35rem, 1.5vw, 1rem);
+  margin: clamp(1.75rem, 3.5vw, 2.5rem) 0;
+  flex-wrap: nowrap;
+}
+
+.countdown-digit-box {
+  background: var(--colors-canvas-soft);
+  border: 1px solid var(--colors-border);
+  border-radius: var(--rounded-card);
+  padding: clamp(0.75rem, 1.8vw, 1.25rem) clamp(0.5rem, 1.8vw, 1.5rem);
+  min-width: clamp(56px, 16vw, 95px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.digit-value {
+  font-family: var(--font-family);
+  font-size: clamp(1.6rem, 5vw, 3.6rem);
+  font-weight: 800;
+  color: var(--colors-ink);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.digit-label {
+  font-family: var(--font-family);
+  font-size: clamp(9px, 1.1vw, 11px);
+  font-weight: 700;
+  color: var(--colors-primary);
+  margin-top: 0.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.digit-separator {
+  font-family: var(--font-family);
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--colors-primary);
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.countdown-meta-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  text-align: left;
+  border-top: 1px solid var(--colors-border);
+  padding-top: 1.75rem;
+}
+
+@media (min-width: 600px) {
+  .countdown-meta-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .countdown-meta-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.meta-label {
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--colors-primary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.meta-value {
+  font-size: clamp(14px, 1.2vw, 16px);
+  color: var(--colors-ink);
+}
+
+.meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.meta-tag {
+  background: var(--colors-canvas-soft);
+  border: 1px solid var(--colors-border);
+  border-radius: var(--rounded-pill-md);
+  padding: 3px 10px;
+  font-size: 12px;
+  color: var(--colors-body);
+}

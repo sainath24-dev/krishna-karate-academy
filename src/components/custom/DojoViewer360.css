@@ -1,0 +1,214 @@
+.dojo-viewer-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(140, 16, 23, 0.2);
+}
+
+.dojo-viewer-canvas-box {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background-color: #0c0a08;
+  cursor: grab;
+  user-select: none;
+}
+
+.dojo-viewer-canvas-box:active {
+  cursor: grabbing;
+}
+
+.dojo-viewer-canvas-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.dojo-viewer-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(11, 10, 8, 0.85);
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  border-radius: 4px;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--tatami);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+.badge-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 10px var(--ember);
+  animation: pulseEmber 1.5s infinite;
+}
+
+@keyframes pulseEmber {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+.dojo-hotspot-toolbar {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn-hotspot-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(11, 10, 8, 0.85);
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  color: var(--tatami);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-hotspot-tab:hover,
+.btn-hotspot-tab.is-active {
+  background: var(--ink-raised);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hotspot-bullet {
+  color: var(--ember);
+  font-size: 0.8rem;
+}
+
+.dojo-hotspot-modal {
+  position: absolute;
+  bottom: 5.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  max-width: 480px;
+  background: rgba(14, 12, 10, 0.94);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  z-index: 15;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  animation: slideUpModal 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-category {
+  font-size: 0.7rem;
+  color: var(--ember);
+  background: rgba(255, 75, 31, 0.15);
+  border: 1px solid rgba(255, 75, 31, 0.3);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--tatami);
+  flex-grow: 1;
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--steel);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+}
+
+.btn-modal-close:hover {
+  color: var(--gold);
+}
+
+.modal-desc {
+  font-size: 0.85rem;
+  color: var(--tatami);
+  line-height: 1.5;
+}
+
+.dojo-viewer-controls {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(11, 10, 8, 0.85);
+  border: 1px solid rgba(201, 162, 75, 0.35);
+  border-radius: 30px;
+  padding: 0.4rem 0.75rem;
+}
+
+.btn-viewer-ctrl {
+  background: transparent;
+  border: none;
+  color: var(--tatami);
+  font-size: 1.1rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-viewer-ctrl:hover {
+  background: rgba(201, 162, 75, 0.2);
+  color: var(--gold);
+}
+
+.btn-viewer-ctrl.is-active {
+  color: var(--ember);
+}

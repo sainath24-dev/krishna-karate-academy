@@ -1,0 +1,476 @@
+.contact-section-wrapper {
+  background-color: var(--colors-canvas-soft);
+  color: var(--colors-ink);
+  width: 100%;
+  padding-bottom: 0;
+}
+
+.contact-content-inner {
+  padding-bottom: 0 !important;
+}
+
+.contact-heading {
+  color: var(--colors-ink);
+  margin-top: 0.5rem;
+}
+
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (min-width: 992px) {
+  .contact-main-grid {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 2rem;
+  }
+}
+
+/* Left Col Dojo Card */
+.dojo-location-card {
+  padding: clamp(1.5rem, 3vw, 2.25rem) !important;
+  margin-bottom: 1.5rem;
+}
+
+.dojo-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact-brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--colors-primary);
+  box-shadow: 0 2px 8px rgba(230, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.location-name {
+  color: var(--colors-ink);
+  margin-top: 0.2rem;
+  letter-spacing: -0.4px;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+}
+
+.info-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.info-icon {
+  font-size: 1.2rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.info-label {
+  color: var(--colors-primary);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.info-value {
+  color: var(--colors-ink);
+  overflow-wrap: break-word;
+}
+
+.dojo-action-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1.5rem 0;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--colors-border);
+  border-bottom: 1px solid var(--colors-border);
+}
+
+.btn-action-pill {
+  padding: 9px 18px !important;
+  font-size: 14px !important;
+  min-height: 42px;
+}
+
+@media (max-width: 480px) {
+  .btn-action-pill {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.dojo-social-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.social-label {
+  color: var(--colors-body);
+}
+
+.social-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.social-pill {
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-pill:hover {
+  background-color: var(--colors-primary);
+  color: #ffffff;
+  border-color: var(--colors-primary);
+}
+
+/* Schedule Panel */
+.quick-schedule-panel {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+}
+
+.schedule-panel-title {
+  font-family: var(--font-family);
+  font-size: clamp(0.95rem, 1.3vw, 1rem);
+  font-weight: 800;
+  color: var(--colors-ink);
+  margin-bottom: 1.25rem;
+}
+
+.quick-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.quick-sched-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--colors-border);
+}
+
+.quick-sched-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sched-level-name {
+  color: var(--colors-ink);
+}
+
+.sched-days-timing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--colors-body);
+}
+
+@media (min-width: 480px) {
+  .sched-days-timing {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.sched-timing {
+  color: var(--colors-primary);
+  font-weight: 600;
+}
+
+/* Right Col: Lead Capture Form & Visiting Card Column */
+.contact-form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-form-card {
+  padding: clamp(1.5rem, 3vw, 2.5rem) !important;
+}
+
+.form-header-box {
+  margin-bottom: 1.5rem;
+}
+
+.form-title {
+  color: var(--colors-ink);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.3px;
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+}
+
+.form-sub {
+  color: var(--colors-body);
+  font-size: clamp(13.5px, 1.1vw, 15px);
+}
+
+.form-error-banner {
+  background-color: #fee2e2;
+  color: var(--colors-primary);
+  padding: 0.75rem 1rem;
+  border-radius: var(--rounded-sm);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.dojo-lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  color: var(--colors-ink);
+  font-size: 12px;
+}
+
+.req-star {
+  color: var(--colors-primary);
+}
+
+/* Chrome Inputs (White Mode, 16px to prevent iOS zoom) */
+.form-input,
+.form-select,
+.form-textarea {
+  background-color: var(--colors-canvas);
+  color: var(--colors-ink);
+  font-family: var(--font-family);
+  font-size: 16px;
+  border-radius: var(--rounded-sm);
+  border: 1px solid #d1d5db;
+  padding: 12px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--colors-primary);
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.12);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.btn-form-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 13px 24px !important;
+  font-size: clamp(14px, 1.2vw, 16px) !important;
+}
+
+/* Visiting Card Container */
+.visiting-card-container {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.visiting-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.visiting-card-frame {
+  width: 100%;
+  border-radius: var(--rounded-sm);
+  overflow: hidden;
+  border: 1px solid var(--colors-border);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+}
+
+.visiting-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.visiting-card-frame:hover .visiting-card-image {
+  transform: scale(1.02);
+}
+
+/* Success State & WhatsApp QR */
+.form-success-state {
+  text-align: center;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-qr-wrap {
+  width: clamp(120px, 25vw, 150px);
+  height: clamp(120px, 25vw, 150px);
+  border-radius: var(--rounded-sm);
+  overflow: hidden;
+  border: 2px solid var(--colors-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.25rem;
+  padding: 6px;
+  background: #ffffff;
+}
+
+.success-qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.success-title {
+  color: var(--colors-ink);
+  margin-bottom: 0.6rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.success-desc {
+  color: var(--colors-body);
+  max-width: 480px;
+  margin: 0 auto 1.75rem;
+  font-size: clamp(14px, 1.2vw, 16px);
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.btn-whatsapp-confirm {
+  width: 100%;
+  font-size: clamp(14px, 1.2vw, 16px) !important;
+}
+
+.btn-reset-form {
+  width: 100%;
+}
+
+/* Global Footer (White Mode Clean #ffffff Band) */
+.dojo-global-footer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #ffffff;
+  color: var(--colors-ink);
+  padding: clamp(2.5rem, 5vw, 3.5rem) 1.25rem;
+  border-top: 1px solid var(--colors-border);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.footer-content-strip {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  justify-content: space-between;
+}
+
+@media (min-width: 992px) {
+  .footer-content-strip {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.6rem;
+}
+
+.footer-logo-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--colors-primary);
+  flex-shrink: 0;
+}
+
+.footer-brand-title {
+  font-family: var(--font-family);
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 800;
+  color: var(--colors-ink);
+  letter-spacing: -0.3px;
+  display: block;
+}
+
+.footer-reg-number {
+  color: var(--colors-primary);
+  font-weight: 700;
+  display: block;
+  font-size: 11px;
+}
+
+.footer-copy {
+  color: var(--colors-body);
+  font-size: clamp(12px, 1.1vw, 13px);
+  line-height: 1.5;
+}
+
+.footer-links-side {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+}
+
+.footer-link {
+  color: var(--colors-ink);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: clamp(13px, 1.1vw, 15px);
+  transition: color 0.2s ease;
+  padding: 4px 0;
+}
+
+.footer-link:hover {
+  color: var(--colors-primary);
+}

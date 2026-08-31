@@ -1,0 +1,126 @@
+.teachers-section-wrapper {
+  background-color: var(--colors-canvas-soft);
+  color: var(--colors-ink);
+  width: 100%;
+}
+
+.teachers-heading {
+  color: var(--colors-ink);
+  margin-top: 0.5rem;
+}
+
+.instructors-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+@media (min-width: 992px) {
+  .instructors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.instructor-story-card {
+  padding: 2.25rem !important;
+  border-radius: var(--rounded-card) !important;
+  background-color: var(--colors-canvas) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.instructor-story-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--colors-primary);
+}
+
+.is-chief-card {
+  border: 2px solid var(--colors-primary) !important;
+}
+
+.instructor-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.instructor-avatar-icon {
+  font-size: 1.75rem;
+}
+
+.instructor-info-block {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.instructor-name {
+  font-family: var(--font-family);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--colors-ink);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.4px;
+}
+
+.instructor-title {
+  color: var(--colors-primary);
+  margin-bottom: 0.25rem;
+}
+
+.instructor-rank {
+  color: var(--colors-body);
+}
+
+.instructor-bio {
+  color: var(--colors-body);
+  margin-bottom: 1.5rem;
+  line-height: 1.55;
+}
+
+.instructor-specialty-box {
+  background-color: var(--colors-canvas-soft);
+  border-radius: var(--rounded-sm);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.specialty-label {
+  color: var(--colors-primary);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.specialty-text {
+  color: var(--colors-ink);
+}
+
+.instructor-honors-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.instructor-honors-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--colors-body);
+  line-height: 1.4;
+}
+
+.honors-label {
+  color: var(--colors-ink);
+}
+
+.honor-bullet {
+  color: var(--colors-primary);
+  font-size: 0.85rem;
+}

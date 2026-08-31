@@ -1,0 +1,516 @@
+:root {
+  /* =========================================================================
+     WHITE / LIGHT MODE DESIGN SYSTEM TOKENS (design.md)
+     ========================================================================= */
+  --colors-primary: #e60000;
+  --colors-on-primary: #ffffff;
+  --colors-ink: #25282b;
+  --colors-body: #666666;
+  --colors-mute: #e0e0e0;
+  --colors-canvas: #ffffff;
+  --colors-canvas-soft: #f7f7f8;
+  --colors-border: #e5e5e7;
+  --colors-on-dark: #ffffff;
+
+  /* Aliases */
+  --primary: var(--colors-primary);
+  --ink: var(--colors-ink);
+  --canvas: var(--colors-canvas);
+  --canvas-soft: var(--colors-canvas-soft);
+  --body: var(--colors-body);
+  --mute: var(--colors-mute);
+  --on-dark: var(--colors-on-dark);
+  --on-primary: var(--colors-on-primary);
+
+  /* Legacy color mapping fallback */
+  --gold: var(--colors-primary);
+  --ember: var(--colors-primary);
+  --dragon-red: var(--colors-primary);
+  --tatami: var(--colors-ink);
+  --steel: var(--colors-body);
+  --ink-raised: var(--colors-canvas-soft);
+  --card-bg: var(--colors-canvas);
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Radii scale */
+  --rounded-none: 0px;
+  --rounded-xs: 1px;
+  --rounded-sm: 6px;
+  --rounded-card: 6px;
+  --rounded-pill-md: 32px;
+  --rounded-pill-lg: 60px;
+  --rounded-full: 9999px;
+
+  /* Spacing */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--colors-canvas);
+  color: var(--colors-ink);
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  background-color: var(--colors-canvas);
+  color: var(--colors-ink);
+  font-family: var(--font-family);
+  position: relative;
+}
+
+/* Selection */
+::selection {
+  background: var(--colors-primary);
+  color: var(--colors-on-primary);
+}
+
+/* =========================================================================
+   RESPONSIVE FLUID TYPOGRAPHY HIERARCHY
+   ========================================================================= */
+
+.display-hero {
+  font-family: var(--font-family);
+  font-size: clamp(38px, 8vw, 120px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: var(--colors-ink);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.display-xxl {
+  font-family: var(--font-family);
+  font-size: clamp(32px, 6.5vw, 100px);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: var(--colors-ink);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.display-xl {
+  font-family: var(--font-family);
+  font-size: clamp(26px, 4.5vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--colors-ink);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.display-lg {
+  font-family: var(--font-family);
+  font-size: clamp(24px, 3.2vw, 42px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--colors-ink);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.display-md {
+  font-family: var(--font-family);
+  font-size: clamp(19px, 2.4vw, 32px);
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--colors-body);
+  overflow-wrap: break-word;
+}
+
+.display-sm {
+  font-family: var(--font-family);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--colors-ink);
+  overflow-wrap: break-word;
+}
+
+.display-xs {
+  font-family: var(--font-family);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--colors-ink);
+  overflow-wrap: break-word;
+}
+
+.eyebrow-uppercase {
+  font-family: var(--font-family);
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 800;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--colors-primary);
+  display: inline-block;
+}
+
+.body-lg {
+  font-family: var(--font-family);
+  font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--colors-body);
+}
+
+.body-md {
+  font-family: var(--font-family);
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--colors-body);
+}
+
+.body-md-strong {
+  font-family: var(--font-family);
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--colors-ink);
+}
+
+.body-sm {
+  font-family: var(--font-family);
+  font-size: clamp(13.5px, 1.1vw, 15px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--colors-body);
+}
+
+.body-sm-strong {
+  font-family: var(--font-family);
+  font-size: clamp(13.5px, 1.1vw, 15px);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--colors-ink);
+}
+
+.caption {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--colors-body);
+}
+
+.caption-strong {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  color: var(--colors-ink);
+}
+
+.caption-uppercase {
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colors-body);
+}
+
+/* =========================================================================
+   CONTAINER & SECTION LAYOUT
+   ========================================================================= */
+
+.section-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 3.75rem 1.25rem;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .section-wrapper {
+    padding: 4.5rem 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-wrapper {
+    padding: 5.5rem 2.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-wrapper {
+    padding: 6.5rem 3rem;
+  }
+}
+
+.section-heading-block {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--colors-primary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.section-title-large {
+  font-family: var(--font-family);
+  font-size: clamp(26px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  color: var(--colors-ink);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.section-subtitle {
+  color: var(--colors-body);
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0.75rem auto 0;
+  text-wrap: pretty;
+}
+
+/* =========================================================================
+   BUTTONS (60px PILL GEOMETRY & TOUCH TARGETS)
+   ========================================================================= */
+
+.button-primary,
+.btn-primary,
+.btn-ember {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: var(--colors-primary);
+  color: #ffffff !important;
+  border: 1px solid var(--colors-primary);
+  border-radius: var(--rounded-pill-lg) !important;
+  padding: 12px 28px !important;
+  min-height: 48px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(230, 0, 0, 0.2) !important;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.button-primary:hover,
+.btn-primary:hover,
+.btn-ember:hover {
+  background-color: #cc0000 !important;
+  border-color: #cc0000 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(230, 0, 0, 0.3) !important;
+}
+
+.button-outline-dark,
+.btn-outline-dark,
+.btn-outline-ink,
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: #ffffff;
+  color: var(--colors-ink) !important;
+  border: 1.5px solid var(--colors-ink);
+  border-radius: var(--rounded-pill-lg) !important;
+  padding: 12px 28px !important;
+  min-height: 48px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.button-outline-dark:hover,
+.btn-outline-dark:hover,
+.btn-outline-ink:hover,
+.btn-gold:hover {
+  background-color: var(--colors-ink);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.button-outline-red,
+.btn-outline-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: #ffffff;
+  color: var(--colors-primary) !important;
+  border: 1.5px solid var(--colors-primary);
+  border-radius: var(--rounded-pill-lg) !important;
+  padding: 12px 28px !important;
+  min-height: 48px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.button-outline-red:hover,
+.btn-outline-red:hover {
+  background-color: var(--colors-primary);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* =========================================================================
+   CHIPS & BADGES (32px PILL GEOMETRY)
+   ========================================================================= */
+
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--colors-canvas-soft);
+  color: var(--colors-ink);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  border-radius: var(--rounded-pill-md);
+  padding: 5px 14px;
+  border: 1px solid var(--colors-border);
+  white-space: nowrap;
+}
+
+.badge-chip-red {
+  background-color: #fef2f2;
+  color: var(--colors-primary);
+  border-color: #fecaca;
+}
+
+/* Speechmark Logo Orb */
+.speechmark-logo-orb {
+  background-color: var(--colors-primary);
+  color: #ffffff;
+  border-radius: var(--rounded-sm);
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+/* =========================================================================
+   CARDS & CONTAINERS (6px RADIUS)
+   ========================================================================= */
+
+.card-content {
+  background-color: var(--colors-canvas);
+  color: var(--colors-ink);
+  border-radius: var(--rounded-card);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 1px solid var(--colors-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.card-content-soft {
+  background-color: var(--colors-canvas-soft);
+  color: var(--colors-ink);
+  border-radius: var(--rounded-card);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 1px solid var(--colors-border);
+}
+
+.card-content-dark {
+  background-color: var(--colors-canvas);
+  color: var(--colors-ink);
+  border-radius: var(--rounded-card);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 1px solid var(--colors-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Dividers */
+.divider-on-light,
+.divider-on-dark,
+.gold-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--colors-border);
+  margin: clamp(2rem, 4vw, 3.5rem) 0;
+  border: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--colors-primary);
+}

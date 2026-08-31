@@ -1,0 +1,115 @@
+.logoloop-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logoloop-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logoloop-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--fade-color, #0B0A08), transparent);
+}
+
+.logoloop-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--fade-color, #0B0A08), transparent);
+}
+
+.logoloop-track {
+  display: flex;
+  align-items: center;
+  gap: var(--gap, 48px);
+  width: max-content;
+  animation: logoLoopScroll var(--duration, 25s) linear infinite;
+  will-change: transform;
+}
+
+.logoloop-track:hover {
+  animation-play-state: paused;
+}
+
+.logoloop-track.reverse {
+  animation-direction: reverse;
+}
+
+.logoloop__item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoloop__item a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.logoloop__item img {
+  filter: grayscale(1) brightness(1.25);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  object-fit: contain;
+  max-width: 160px;
+}
+
+.logoloop__item:hover img {
+  filter: none;
+  transform: scale(1.05);
+}
+
+.logo-badge-fallback {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  border-radius: 4px;
+  background: var(--ink-raised);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: grayscale(0.8) brightness(1.1);
+  transition: filter 0.3s ease, border-color 0.3s ease;
+}
+
+.logoloop__item:hover .logo-badge-fallback {
+  filter: none;
+  border-color: var(--gold);
+}
+
+.logo-badge-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--tatami);
+  letter-spacing: 0.08em;
+}
+
+.logo-badge-sub {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--gold);
+}
+
+@keyframes logoLoopScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-33.333% - var(--gap) / 3));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoloop-track {
+    animation: none;
+  }
+}

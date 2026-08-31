@@ -1,0 +1,17 @@
+.hyperspeed-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 12px;
+}
+
+.hyperspeed-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}

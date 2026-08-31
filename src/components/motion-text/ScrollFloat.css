@@ -1,0 +1,13 @@
+.scroll-float-text {
+  font-family: var(--font-display) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+  display: inline-block;
+  line-height: 1.1;
+  color: var(--tatami);
+}
+
+.scroll-float-char {
+  will-change: transform, opacity;
+}

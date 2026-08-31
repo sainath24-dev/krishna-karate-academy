@@ -1,0 +1,16 @@
+.fold-text-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  line-height: 1.35;
+  font-family: var(--font-body);
+}
+
+.fold-text-unit-wrapper {
+  transform-style: preserve-3d;
+}
+
+.fold-text-unit {
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}

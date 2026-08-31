@@ -1,0 +1,37 @@
+.curved-loop-jacket {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: clamp(80px, 12vw, 160px);
+  min-height: unset;
+  user-select: none;
+}
+
+.curved-loop-jacket.is-interactive {
+  cursor: grab;
+}
+
+.curved-loop-jacket.is-interactive:active {
+  cursor: grabbing;
+}
+
+.curved-loop-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.curved-loop-text {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.curved-loop-dojo {
+  fill: var(--gold) !important;
+}

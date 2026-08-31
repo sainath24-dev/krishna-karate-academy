@@ -1,0 +1,39 @@
+.stroke-text-wrapper {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.stroke-text-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.stroke-text__stroke,
+.stroke-text__fill {
+  font-family: var(--font-display) !important;
+  text-transform: uppercase;
+  transform-origin: center;
+}
+
+.stroke-text__clip-rect {
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+.stroke-text__clip-rect.is-wiping {
+  animation: strokeWipeFill 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes strokeWipeFill {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}

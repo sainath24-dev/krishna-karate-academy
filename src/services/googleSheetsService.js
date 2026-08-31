@@ -2,7 +2,7 @@ import { GOOGLE_SHEETS_CONFIG } from '../config/sheetsConfig';
 import { ACADEMY_DATA } from '../data/academyData';
 
 /**
- * Robust CSV parser that correctly handles quoted strings and commas.
+ * Robust CSV parser that handles quotes, commas, and varied headers.
  */
 function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
@@ -28,6 +28,7 @@ function parseCSV(text) {
     return values;
   };
 
+  // Normalize header names by removing special chars and spaces
   const headers = parseLine(lines[0]).map((h) => h.toLowerCase().replace(/[^a-z0-9]/g, ''));
   const rows = [];
 
@@ -44,6 +45,57 @@ function parseCSV(text) {
   }
 
   return rows;
+}
+
+/**
+ * Finds the first matching value from multiple possible column header aliases.
+ */
+function getColumnValue(row, ...aliases) {
+  for (const alias of aliases) {
+    const normalized = alias.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (row[normalized] !== undefined && row[normalized] !== '') {
+      return row[normalized];
+    }
+  }
+  return '';
+}
+
+/**
+ * Formats user-entered date strings into valid ISO format.
+ */
+function parseFlexibleDate(dateStr) {
+  if (!dateStr) return '2026-09-05T09:00:00';
+  const clean = dateStr.trim();
+
+  // If already standard ISO
+  if (!isNaN(Date.parse(clean))) {
+    return new Date(clean).toISOString();
+  }
+
+  // Handle DD-MM-YYYY or DD/MM/YYYY
+  const parts = clean.split(/[-/.\s]/);
+  if (parts.length >= 3) {
+    if (parts[0].length === 2 && parts[2].length === 4) {
+      // DD/MM/YYYY -> YYYY-MM-DD
+      return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}T09:00:00`;
+    }
+  }
+
+  return '2026-09-05T09:00:00';
+}
+
+/**
+ * Formats user-entered medal values into standardized badges and emojis.
+ */
+function parseMedalBadge(rawBadge) {
+  const text = (rawBadge || '').toUpperCase();
+  if (text.includes('INTL') && text.includes('GOLD')) return { badge: 'INTL GOLD', icon: '🥇' };
+  if (text.includes('NATIONAL') && text.includes('GOLD')) return { badge: 'NATIONAL GOLD', icon: '🥇' };
+  if (text.includes('STATE') && text.includes('GOLD')) return { badge: 'STATE GOLD', icon: '🥇' };
+  if (text.includes('GOLD') || text.includes('1ST')) return { badge: 'GOLD MEDAL', icon: '🥇' };
+  if (text.includes('SILVER') || text.includes('2ND')) return { badge: 'INTL SILVER', icon: '🥈' };
+  if (text.includes('BRONZE') || text.includes('3RD')) return { badge: 'BRONZE MEDAL', icon: '🥉' };
+  return { badge: rawBadge || 'CHAMPION', icon: '🥇' };
 }
 
 /**
@@ -70,12 +122,11 @@ async function fetchSheetTab(sheetId, tabName) {
 }
 
 /**
- * Fetches all academy data (Tournaments, HallOfFame, BlackBelts) from Google Sheets with caching.
+ * Fetches and parses all academy data from Google Sheets with intelligent column mapping.
  */
 export async function fetchLiveAcademyData(forceRefresh = false) {
   const { sheetId, tabs, cacheDurationMs } = GOOGLE_SHEETS_CONFIG;
 
-  // If Sheet ID is not yet provided in .env, return local verified defaults seamlessly
   if (!sheetId || sheetId.trim() === '') {
     return {
       data: ACADEMY_DATA,
@@ -86,7 +137,6 @@ export async function fetchLiveAcademyData(forceRefresh = false) {
 
   const cacheKey = `kka_sheets_cache_${sheetId}`;
 
-  // Check cached data if not forcing refresh
   if (!forceRefresh) {
     try {
       const cached = sessionStorage.getItem(cacheKey);
@@ -112,59 +162,72 @@ export async function fetchLiveAcademyData(forceRefresh = false) {
       blackBelts: ACADEMY_DATA.blackBelts
     };
 
-    // Parse Tournaments Tab
+    // 1. Parse Tournaments Tab with flexible aliases
     if (tournRows.status === 'fulfilled' && tournRows.value && tournRows.value.length > 0) {
-      result.tournaments = tournRows.value.map((r, idx) => ({
-        id: 'gs-tourn-' + idx,
-        title: r.title || r.name || 'Karate Tournament',
-        subtitle: r.subtitle || r.tagline || 'Championship Tournament',
-        targetDate: r.targetdate || r.date || '2026-09-05T09:00:00',
-        location: r.location || r.city || 'Bidar / Hyderabad',
-        categories: (r.categories || 'Kata Forms Division, Kumite Sparring')
-          .split(/[,;]/)
-          .map((c) => c.trim())
-          .filter(Boolean),
-        status: r.status || 'Upcoming Tournament'
-      }));
+      result.tournaments = tournRows.value.map((r, idx) => {
+        const title = getColumnValue(r, 'title', 'tournament', 'tournamentname', 'name', 'event') || 'Karate Tournament';
+        const subtitle = getColumnValue(r, 'subtitle', 'tagline', 'description', 'level') || 'Championship Tournament';
+        const rawDate = getColumnValue(r, 'targetdate', 'date', 'tournamentdate', 'eventdate', 'timing');
+        const location = getColumnValue(r, 'location', 'venue', 'city', 'place', 'address') || 'Bidar / Hyderabad';
+        const categoriesRaw = getColumnValue(r, 'categories', 'category', 'divisions', 'events') || 'Kata Forms Division, Kumite Sparring';
+        const status = getColumnValue(r, 'status', 'badge', 'state', 'notes') || 'Upcoming Tournament';
+
+        return {
+          id: 'gs-tourn-' + idx,
+          title,
+          subtitle,
+          targetDate: parseFlexibleDate(rawDate),
+          location,
+          categories: categoriesRaw.split(/[,;]/).map((c) => c.trim()).filter(Boolean),
+          status
+        };
+      });
     }
 
-    // Parse Hall of Fame Tab
+    // 2. Parse Hall of Fame Tab with flexible aliases
     if (champRows.status === 'fulfilled' && champRows.value && champRows.value.length > 0) {
       result.champions = champRows.value.map((r, idx) => {
-        const badge = (r.badge || 'INTL GOLD').toUpperCase();
-        let icon = r.icon || '🥇';
-        if (badge.includes('SILVER')) icon = '🥈';
-        else if (badge.includes('BRONZE')) icon = '🥉';
+        const name = getColumnValue(r, 'name', 'studentname', 'student', 'winner', 'athlete') || 'Student Achiever';
+        const rawMedal = getColumnValue(r, 'badge', 'medal', 'medalwon', 'award', 'rank', 'position');
+        const { badge, icon } = parseMedalBadge(rawMedal);
+        const title = getColumnValue(r, 'title', 'studenttitle', 'achievement') || (badge + 'ist');
+        const event = getColumnValue(r, 'event', 'tournament', 'championship', 'competition') || 'National Championship';
 
         return {
           id: 'gs-champ-' + idx,
-          name: r.name || r.studentname || 'Student Achiever',
-          title: r.title || 'Medal Winner',
-          event: r.event || r.tournament || 'National Championship',
+          name,
+          title,
+          event,
           badge,
           icon
         };
       });
     }
 
-    // Parse Black Belts Tab
+    // 3. Parse Black Belts Tab with flexible aliases
     if (beltRows.status === 'fulfilled' && beltRows.value && beltRows.value.length > 0) {
       const tierMap = {};
       beltRows.value.forEach((r) => {
-        const tier = r.tier || '1st Dan Black Belt (Sho-Dan)';
+        const tier = getColumnValue(r, 'tier', 'dan', 'belttier', 'degree', 'level') || '1st Dan Black Belt (Sho-Dan)';
+        const requirement = getColumnValue(r, 'requirement', 'criteria', 'qualification', 'details') || '5-Year Dedicated Journey Completion';
+        const studentName = getColumnValue(r, 'studentname', 'name', 'student', 'graduate');
+        const studentTitle = getColumnValue(r, 'studenttitle', 'title', 'role') || 'Black Belt Graduate';
+        const studentStatus = getColumnValue(r, 'studentstatus', 'status', 'experience', 'exp') || 'Certified Black Belt';
+        const badge = getColumnValue(r, 'badge', 'danrank', 'tag') || 'BLACK BELT';
+
         if (!tierMap[tier]) {
           tierMap[tier] = {
             tierName: tier,
-            requirement: r.requirement || '5-Year Dedicated Journey Completion',
+            requirement,
             students: []
           };
         }
-        if (r.studentname || r.name) {
+        if (studentName) {
           tierMap[tier].students.push({
-            name: r.studentname || r.name,
-            title: r.studenttitle || r.title || 'Black Belt Graduate',
-            status: r.studentstatus || r.status || 'Certified Black Belt',
-            badge: r.badge || 'BLACK BELT'
+            name: studentName,
+            title: studentTitle,
+            status: studentStatus,
+            badge
           });
         }
       });
@@ -173,10 +236,7 @@ export async function fetchLiveAcademyData(forceRefresh = false) {
 
     // Save to session cache
     try {
-      sessionStorage.setItem(
-        cacheKey,
-        JSON.stringify({ timestamp: Date.now(), data: result })
-      );
+      sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: result }));
     } catch {}
 
     return {

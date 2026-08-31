@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { useReducedMotion } from '../custom/useReducedMotion';
 import './CurvedLoop.css';
 
@@ -12,6 +12,7 @@ export function CurvedLoop({
   style = {}
 }) {
   const isReduced = useReducedMotion();
+  const reactId = useId();
   const [offset, setOffset] = useState(0);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -20,7 +21,7 @@ export function CurvedLoop({
   const animFrameId = useRef(null);
 
   const repeatedText = `${marqueeText} `.repeat(8);
-  const pathId = `curved-path-${Math.random().toString(36).substr(2, 9)}`;
+  const pathId = `curved-path-${reactId.replace(/:/g, '')}`;
 
   // SVG dimensions
   const viewBoxWidth = 1440;

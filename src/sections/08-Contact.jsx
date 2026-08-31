@@ -54,12 +54,35 @@ export function ContactSection() {
     return `https://api.whatsapp.com/send?phone=919620303207&text=${encodeURIComponent(messageText)}`;
   };
 
+  const sanitize = (str, maxLen = 150) => {
+    if (!str) return '';
+    return String(str)
+      .trim()
+      .replace(/[<>]/g, '')
+      .slice(0, maxLen);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.studentName || !formData.phone) {
+    const cleanStudentName = sanitize(formData.studentName, 80);
+    const cleanPhone = sanitize(formData.phone, 20);
+    const cleanParentName = sanitize(formData.parentName, 80);
+    const cleanEmail = sanitize(formData.email, 100);
+    const cleanMessage = sanitize(formData.message, 300);
+
+    if (!cleanStudentName || !cleanPhone) {
       setErrorMsg('Please fill in required fields (Student Name, Phone Number).');
       return;
     }
+
+    const sanitizedData = {
+      studentName: cleanStudentName,
+      parentName: cleanParentName,
+      phone: cleanPhone,
+      email: cleanEmail,
+      experienceLevel: formData.experienceLevel,
+      message: cleanMessage
+    };
 
     setErrorMsg('');
     setIsSubmitting(true);
@@ -68,10 +91,10 @@ export function ContactSection() {
     try {
       const existingLeads = JSON.parse(localStorage.getItem('kka_registered_leads') || '[]');
       existingLeads.unshift({
-        ...formData,
+        ...sanitizedData,
         submittedAt: new Date().toISOString()
       });
-      localStorage.setItem('kka_registered_leads', JSON.stringify(existingLeads));
+      localStorage.setItem('kka_registered_leads', JSON.stringify(existingLeads.slice(0, 50)));
     } catch {
       // ignore
     }
@@ -87,14 +110,14 @@ export function ContactSection() {
         body: JSON.stringify({
           access_key: '382cb755-e421-4f95-9bf8-92167d3b24f5',
           from_name: 'Krishna Karate Academy Website',
-          subject: `New Free Trial Registration: ${formData.studentName} (${formData.experienceLevel})`,
+          subject: `New Free Trial Registration: ${sanitizedData.studentName} (${sanitizedData.experienceLevel})`,
           recipient: 'bidarkrishnakaratewal@gmail.com',
-          student_name: formData.studentName,
-          parent_guardian: formData.parentName || 'N/A',
-          phone_number: formData.phone,
-          email_address: formData.email || 'N/A',
-          batch_timing: formData.experienceLevel,
-          message_goals: formData.message || 'None',
+          student_name: sanitizedData.studentName,
+          parent_guardian: sanitizedData.parentName || 'N/A',
+          phone_number: sanitizedData.phone,
+          email_address: sanitizedData.email || 'N/A',
+          batch_timing: sanitizedData.experienceLevel,
+          message_goals: sanitizedData.message || 'None',
           academy_location: 'K.E.B Road SBH Colony Hanuman Mandir Bidar 585401'
         })
       });

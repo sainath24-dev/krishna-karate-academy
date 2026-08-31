@@ -2,6 +2,8 @@
   background-color: var(--colors-canvas-soft);
   color: var(--colors-ink);
   width: 100%;
+  border-top: 1px solid var(--colors-border);
+  border-bottom: 1px solid var(--colors-border);
 }
 
 .gallery-heading {
@@ -9,18 +11,19 @@
   margin-top: 0.5rem;
 }
 
-/* Scalable Bento Grid */
+/* Dense, Gap-Free Bento Grid */
 .bento-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
-  grid-auto-rows: 220px;
+  gap: 1rem;
+  grid-auto-rows: 200px;
 }
 
 @media (min-width: 600px) {
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 210px;
+    grid-auto-flow: dense;
   }
   
   .bento-featured {
@@ -32,8 +35,9 @@
 @media (min-width: 1024px) {
   .bento-grid {
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 240px;
-    gap: 1.5rem;
+    grid-auto-rows: 230px;
+    gap: 1.25rem;
+    grid-auto-flow: dense;
   }
 
   .bento-featured {
@@ -67,8 +71,8 @@
 }
 
 .bento-item:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--colors-primary);
 }
 
@@ -81,7 +85,7 @@
 }
 
 .bento-item:hover .bento-img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .bento-video-wrap {
@@ -92,14 +96,14 @@
 
 .bento-video-play-badge {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: 10px;
+  right: 10px;
   background: var(--colors-primary);
   color: #ffffff;
   font-family: var(--font-family);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: var(--rounded-pill-md);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
   display: inline-flex;
@@ -122,15 +126,16 @@
 
 /* Actions Row: View More Button */
 .bento-actions-row {
-  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-top: 1.75rem;
   display: flex;
   justify-content: center;
 }
 
 .bento-toggle-btn {
-  padding: 12px 28px !important;
-  font-size: clamp(14px, 1.2vw, 16px) !important;
+  padding: 10px 24px !important;
+  font-size: 14px !important;
   border-radius: var(--rounded-pill-lg) !important;
+  min-height: 44px;
 }
 
 /* Lightbox Modal */

@@ -2,6 +2,7 @@
   background-color: var(--colors-canvas);
   color: var(--colors-ink);
   width: 100%;
+  border-top: 1px solid var(--colors-border);
 }
 
 .fame-heading {
@@ -12,25 +13,26 @@
 .champions-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
-  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  gap: 1.15rem;
+  margin-top: 0;
 }
 
 @media (min-width: 600px) {
   .champions-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 }
 
 @media (min-width: 1024px) {
   .champions-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 }
 
 .champion-card {
-  padding: clamp(1.5rem, 2.5vw, 2.25rem) !important;
+  padding: clamp(1.25rem, 2vw, 1.75rem) !important;
   border-radius: var(--rounded-card) !important;
   background-color: var(--colors-canvas-soft) !important;
   border: 1px solid var(--colors-border);
@@ -50,30 +52,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .champion-medal-icon {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
 }
 
 .champion-name {
   font-family: var(--font-family);
-  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
   font-weight: 800;
   color: var(--colors-ink);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
   letter-spacing: -0.3px;
 }
 
 .champion-title {
   color: var(--colors-primary);
-  margin-bottom: 0.5rem;
-  font-size: clamp(13px, 1.1vw, 15px);
+  margin-bottom: 0.35rem;
+  font-size: clamp(12.5px, 1.1vw, 14px);
 }
 
 .champion-event {
   color: var(--colors-body);
   line-height: 1.45;
-  font-size: clamp(13px, 1.1vw, 14px);
+  font-size: clamp(12.5px, 1.1vw, 13.5px);
 }

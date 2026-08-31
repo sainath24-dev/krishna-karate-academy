@@ -17,8 +17,8 @@
 .contact-main-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.75rem;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  gap: 1.5rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 @media (min-width: 992px) {
@@ -387,19 +387,14 @@
   width: 100%;
 }
 
-/* Global Footer (White Mode Clean #ffffff Band) */
+/* Global Footer (Natural 100% Full-Width Band) */
 .dojo-global-footer {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   background-color: #ffffff;
-  color: var(--colors-ink);
-  padding: clamp(2.5rem, 5vw, 3.5rem) 1.25rem;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem);
   border-top: 1px solid var(--colors-border);
-  margin-top: clamp(2.5rem, 5vw, 4rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  box-sizing: border-box;
 }
 
 .footer-content-strip {

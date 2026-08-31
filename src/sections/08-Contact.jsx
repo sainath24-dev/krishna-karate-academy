@@ -466,38 +466,38 @@ export function ContactSection() {
             </div>
           </div>
         </div>
-
-        {/* Global Footer (Clean White Mode) */}
-        <footer className="dojo-global-footer">
-          <div className="footer-content-strip">
-            <div className="footer-brand-side">
-              <div className="footer-logo-row">
-                <img src="/logo.jpg" alt="Krishna Martial Art Logo" className="footer-logo-img" />
-                <div>
-                  <span className="footer-brand-title">
-                    <span className="brand-word-black">KRISHNA</span>{' '}
-                    <span className="brand-word-red">MARTIAL ART KARATE</span>{' '}
-                    <span className="brand-word-black">SCHOOL</span>
-                  </span>
-                  <span className="footer-reg-number caption">BIDAR · REG. NO .307/2016/17</span>
-                </div>
-              </div>
-              <p className="footer-copy caption">
-                © {new Date().getFullYear()} Krishna Martial Art Karate School · K.E.B Road, SBH Colony, Hanuman Mandir, Bidar 585401 · <em>"We Are The Best"</em>
-              </p>
-            </div>
-
-            <div className="footer-links-side body-sm">
-              <a href="#hero" className="footer-link">Home</a>
-              <a href="#about" className="footer-link">About Founder</a>
-              <a href="#gallery" className="footer-link">Class Gallery</a>
-              <a href="#classes" className="footer-link">Classes & Fees</a>
-              <a href="#tournaments" className="footer-link">Tournaments</a>
-              <a href="#hall-of-fame" className="footer-link">Hall of Fame</a>
-            </div>
-          </div>
-        </footer>
       </div>
+
+      {/* Global Footer (Clean White Mode full-width band) */}
+      <footer className="dojo-global-footer">
+        <div className="footer-content-strip">
+          <div className="footer-brand-side">
+            <div className="footer-logo-row">
+              <img src="/logo.jpg" alt="Krishna Martial Art Logo" className="footer-logo-img" />
+              <div>
+                <span className="footer-brand-title">
+                  <span className="brand-word-black">KRISHNA</span>{' '}
+                  <span className="brand-word-red">MARTIAL ART KARATE</span>{' '}
+                  <span className="brand-word-black">SCHOOL</span>
+                </span>
+                <span className="footer-reg-number caption">BIDAR · REG. NO .307/2016/17</span>
+              </div>
+            </div>
+            <p className="footer-copy caption">
+              © {new Date().getFullYear()} Krishna Martial Art Karate School · K.E.B Road, SBH Colony, Hanuman Mandir, Bidar 585401 · <em>"We Are The Best"</em>
+            </p>
+          </div>
+
+          <div className="footer-links-side body-sm">
+            <a href="#hero" className="footer-link">Home</a>
+            <a href="#about" className="footer-link">About Founder</a>
+            <a href="#gallery" className="footer-link">Class Gallery</a>
+            <a href="#classes" className="footer-link">Classes & Fees</a>
+            <a href="#tournaments" className="footer-link">Tournaments</a>
+            <a href="#hall-of-fame" className="footer-link">Hall of Fame</a>
+          </div>
+        </div>
+      </footer>
     </section>
   );
 }

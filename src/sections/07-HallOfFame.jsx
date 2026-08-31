@@ -1,45 +1,10 @@
 import React from 'react';
+import { useAcademyData } from '../context/AcademyDataContext';
 import './07-HallOfFame.css';
 
-const STANDOUT_CHAMPIONS = [
-  {
-    name: 'Abhishek',
-    title: 'International Gold Medalist',
-    event: 'Hyderabad International Level Championship',
-    badge: 'INTL GOLD',
-    icon: '🥇'
-  },
-  {
-    name: 'Janvi',
-    title: 'International Gold Medalist',
-    event: 'Hyderabad International Level Championship',
-    badge: 'INTL GOLD',
-    icon: '🥇'
-  },
-  {
-    name: 'Sakshi',
-    title: 'National Gold Medalist',
-    event: 'Aurangabad All-India National Championship',
-    badge: 'NATIONAL GOLD',
-    icon: '🥇'
-  },
-  {
-    name: 'Akansha',
-    title: 'International Silver Medalist',
-    event: 'Hyderabad International Level Championship',
-    badge: 'INTL SILVER',
-    icon: '🥈'
-  },
-  {
-    name: 'Numan',
-    title: 'National Gold Medalist',
-    event: 'Hyderabad National Level Championship',
-    badge: 'NATIONAL GOLD',
-    icon: '🥇'
-  }
-];
-
 export function HallOfFameSection() {
+  const { champions, whatsAppUpdateUrl } = useAcademyData();
+
   return (
     <section id="hall-of-fame" className="content-band-light hall-of-fame-section-wrapper">
       <div className="section-wrapper">
@@ -49,15 +14,15 @@ export function HallOfFameSection() {
             Hall of Fame & Medal Winners
           </h2>
           <p className="body-md section-subtitle">
-            Celebrating our students who brought home Gold and Silver medals
+            Celebrating our students who brought home Gold and Silver medals 
             representing Krishna Karate Academy Bidar across National and International championships.
           </p>
         </div>
 
-        {/* 5 Real Champions Grid (6px Cards, Vodafone Spec) */}
+        {/* Dynamic Champions Grid */}
         <div className="champions-grid">
-          {STANDOUT_CHAMPIONS.map((champ, idx) => (
-            <div key={idx} className="card-content-soft champion-card">
+          {champions.map((champ, idx) => (
+            <div key={champ.id || idx} className="card-content-soft champion-card">
               <div className="champion-card-top">
                 <span className="badge-chip badge-chip-red">{champ.badge}</span>
                 <span className="champion-medal-icon">{champ.icon}</span>
@@ -67,6 +32,20 @@ export function HallOfFameSection() {
               <p className="champion-event caption">{champ.event}</p>
             </div>
           ))}
+        </div>
+
+        {/* Sensei 1-Tap WhatsApp Update Trigger */}
+        <div className="hall-of-fame-update-row">
+          <a
+            href={whatsAppUpdateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whatsapp-update-link caption"
+            title="Sensei: Tap to send new winner or tournament details via WhatsApp"
+          >
+            <span>🥋 Sensei: Tap here to submit a new student medal winner via WhatsApp</span>
+            <span>→</span>
+          </a>
         </div>
       </div>
     </section>

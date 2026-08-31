@@ -3,7 +3,7 @@ import { useAcademyData } from '../context/AcademyDataContext';
 import './07-HallOfFame.css';
 
 export function HallOfFameSection() {
-  const { champions, whatsAppUpdateUrl } = useAcademyData();
+  const { champions } = useAcademyData();
 
   return (
     <section id="hall-of-fame" className="content-band-light hall-of-fame-section-wrapper">
@@ -32,20 +32,6 @@ export function HallOfFameSection() {
               <p className="champion-event caption">{champ.event}</p>
             </div>
           ))}
-        </div>
-
-        {/* Sensei 1-Tap WhatsApp Update Trigger */}
-        <div className="hall-of-fame-update-row">
-          <a
-            href={whatsAppUpdateUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="whatsapp-update-link caption"
-            title="Sensei: Tap to send new winner or tournament details via WhatsApp"
-          >
-            <span>🥋 Sensei: Tap here to submit a new student medal winner via WhatsApp</span>
-            <span>→</span>
-          </a>
         </div>
       </div>
     </section>

@@ -131,34 +131,3 @@ export const ACADEMY_DATA = {
     }
   ]
 };
-
-/**
- * Generates the 1-Tap WhatsApp Website Update Request URL for Sensei Krishna.
- * Destination phone: Sainath / Academy Admin (6361040802).
- */
-export function getWhatsAppUpdateRequestUrl() {
-  const lines = [
-    `KRISHNA KARATE ACADEMY — WEBSITE UPDATE REQUEST`,
-    `-----------------------------------------------`,
-    `Namaste! Please update the website with new details:`,
-    ``,
-    `UPDATE CATEGORY:`,
-    `[ ] New Student Win (Hall of Fame)`,
-    `[ ] Upcoming Tournament`,
-    `[ ] New Black Belt Graduate`,
-    `[ ] Batch Schedule / Class Timings`,
-    ``,
-    `DETAILS:`,
-    `- Student / Tournament Name: `,
-    `- Medal Won (Gold / Silver / Bronze): `,
-    `- Tournament / Event Title: `,
-    `- Date & Location: `,
-    `- Additional Notes: `,
-    ``,
-    `Sent from Sensei Krishna (Krishna Karate Academy)`,
-    `-----------------------------------------------`
-  ];
-
-  const messageText = lines.join('\n');
-  return `https://api.whatsapp.com/send?phone=916361040802&text=${encodeURIComponent(messageText)}`;
-}

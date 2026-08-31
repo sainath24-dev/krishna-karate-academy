@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { fetchLiveAcademyData } from '../services/googleSheetsService';
-import { ACADEMY_DATA, getWhatsAppUpdateRequestUrl } from '../data/academyData';
+import { ACADEMY_DATA } from '../data/academyData';
 import { GOOGLE_SHEETS_CONFIG } from '../config/sheetsConfig';
 
 const AcademyDataContext = createContext(null);
@@ -38,8 +38,7 @@ export function AcademyDataProvider({ children }) {
         isLiveSync,
         isLoading,
         refreshLiveSync: () => loadData(true),
-        sheetConfig: GOOGLE_SHEETS_CONFIG,
-        whatsAppUpdateUrl: getWhatsAppUpdateRequestUrl()
+        sheetConfig: GOOGLE_SHEETS_CONFIG
       }}
     >
       {children}

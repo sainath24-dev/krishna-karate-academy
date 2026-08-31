@@ -163,7 +163,11 @@ export function ContactSection() {
                 <img src="/logo.jpg" alt="Krishna Martial Art Logo" className="contact-brand-logo" />
                 <div>
                   <span className="eyebrow-uppercase">ACADEMY LOCATION</span>
-                  <h3 className="display-xs location-name">KRISHNA KARATE ACADEMY BIDAR</h3>
+                  <h3 className="display-xs location-name">
+                    <span className="brand-word-black">KRISHNA</span>{' '}
+                    <span className="brand-word-red">KARATE</span>{' '}
+                    <span className="brand-word-black">ACADEMY</span> BIDAR
+                  </h3>
                 </div>
               </div>
               
@@ -470,7 +474,11 @@ export function ContactSection() {
               <div className="footer-logo-row">
                 <img src="/logo.jpg" alt="Krishna Martial Art Logo" className="footer-logo-img" />
                 <div>
-                  <span className="footer-brand-title">KRISHNA MARTIAL ART KARATE SCHOOL</span>
+                  <span className="footer-brand-title">
+                    <span className="brand-word-black">KRISHNA</span>{' '}
+                    <span className="brand-word-red">MARTIAL ART KARATE</span>{' '}
+                    <span className="brand-word-black">SCHOOL</span>
+                  </span>
                   <span className="footer-reg-number caption">BIDAR · REG. NO .307/2016/17</span>
                 </div>
               </div>

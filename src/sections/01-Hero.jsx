@@ -40,7 +40,7 @@ export function HeroSection() {
         <div className="hero-video-overlay" />
       </div>
 
-      {/* Spacious Hero Content */}
+      {/* Spacious Hero Content Perfectly Centered Across All Screen Ratios */}
       <div className="hero-center-content">
         {/* Category Pill Chip */}
         <div className="badge-chip hero-badge-chip">
@@ -48,9 +48,11 @@ export function HeroSection() {
           <span>ESTD 2012 · BIDAR, KARNATAKA</span>
         </div>
 
-        {/* Grand Display Headline */}
+        {/* Grand Display Headline with KRISHNA (Black), KARATE (Red), ACADEMY (Black) */}
         <h1 className="display-hero hero-main-title">
-          KRISHNA KARATE ACADEMY
+          <span className="title-word-krishna">KRISHNA</span>{' '}
+          <span className="title-word-karate">KARATE</span>{' '}
+          <span className="title-word-academy">ACADEMY</span>
         </h1>
 
         {/* Sub-Headline */}

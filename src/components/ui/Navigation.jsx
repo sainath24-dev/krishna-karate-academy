@@ -29,7 +29,10 @@ export function Navigation() {
         <a href="#hero" className="navbar-brand">
           <img src="/logo.jpg" alt="Krishna Martial Art Logo" className="navbar-logo-img" />
           <div className="navbar-brand-copy">
-            <span className="brand-name">KRISHNA KARATE</span>
+            <span className="brand-name">
+              <span className="brand-word-black">KRISHNA</span>{' '}
+              <span className="brand-word-red">KARATE</span>
+            </span>
             <span className="brand-loc">ESTD 2012 · BIDAR</span>
           </div>
         </a>

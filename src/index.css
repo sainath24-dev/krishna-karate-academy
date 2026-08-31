@@ -58,6 +58,17 @@
   --spacing-3xl: 32px;
 }
 
+/* Brand Word Color Tokens */
+.brand-word-black {
+  color: #1a1c1e !important;
+  font-weight: 800;
+}
+
+.brand-word-red {
+  color: var(--colors-primary) !important;
+  font-weight: 800;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

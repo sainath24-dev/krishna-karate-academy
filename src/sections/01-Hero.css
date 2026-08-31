@@ -1,14 +1,14 @@
 .hero-master-container {
   position: relative;
   width: 100%;
-  min-height: 90vh;
-  min-height: 90svh;
+  min-height: 100vh;
+  min-height: 100svh;
   background-color: var(--colors-canvas);
   color: var(--colors-ink);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(7.5rem, 15vh, 11.5rem) 1.25rem clamp(4rem, 8vh, 7rem);
+  padding: clamp(5.5rem, 10vh, 7.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(3rem, 6vh, 4.5rem);
   overflow: hidden;
   border-bottom: 1px solid var(--colors-border);
 }
@@ -33,34 +33,35 @@
   opacity: 0.98;
 }
 
-/* Subtle, clear overlay so video is vivid and rich while keeping text ultra-readable */
+/* Subtle overlay ensuring the video is visible while keeping text ultra-readable */
 .hero-video-overlay {
   position: absolute;
   inset: 0;
   background: radial-gradient(
     ellipse at 50% 50%,
-    rgba(255, 255, 255, 0.42) 0%,
-    rgba(255, 255, 255, 0.22) 50%,
-    rgba(255, 255, 255, 0.6) 100%
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.68) 100%
   );
 }
 
-/* Centered Hero Content */
+/* Centered Hero Content Across All Aspect Ratios */
 .hero-center-content {
   position: relative;
   z-index: 5;
-  max-width: 1150px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .hero-badge-chip {
-  margin-bottom: clamp(1.25rem, 3vw, 2rem);
-  background-color: rgba(255, 255, 255, 0.95);
+  margin-bottom: clamp(1rem, 2.5vw, 1.75rem);
+  background-color: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   padding: 6px 18px;
@@ -77,24 +78,47 @@
   display: inline-block;
 }
 
+/* Hero Main Title: KRISHNA (Black), KARATE (Red), ACADEMY (Black) */
 .hero-main-title {
-  color: var(--colors-ink);
-  font-size: clamp(38px, 8.2vw, 126px);
-  line-height: 0.96;
-  margin-bottom: clamp(1rem, 2.5vw, 1.75rem);
-  max-width: 1150px;
+  font-size: clamp(34px, 7.2vw, 108px);
+  line-height: 1.02;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  max-width: 100%;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.title-word-krishna {
+  color: #1a1c1e;
+  text-shadow: 
+    0 2px 20px rgba(255, 255, 255, 0.98),
+    0 0 35px rgba(255, 255, 255, 0.9);
+}
+
+.title-word-karate {
+  color: var(--colors-primary);
+  text-shadow: 
+    0 2px 20px rgba(255, 255, 255, 0.98),
+    0 0 35px rgba(255, 255, 255, 0.9),
+    0 0 15px rgba(230, 0, 0, 0.2);
+}
+
+.title-word-academy {
+  color: #1a1c1e;
   text-shadow: 
     0 2px 20px rgba(255, 255, 255, 0.98),
     0 0 35px rgba(255, 255, 255, 0.9);
 }
 
 .hero-sub-title {
-  color: #111111;
-  max-width: 820px;
-  margin: 0 auto clamp(1.75rem, 4vw, 3rem);
+  color: #1a1c1e;
+  max-width: 780px;
+  margin: 0 auto clamp(1.5rem, 3.5vw, 2.75rem);
   font-weight: 600;
-  font-size: clamp(17px, 2.4vw, 32px);
-  line-height: 1.35;
+  font-size: clamp(16px, 2.2vw, 26px);
+  line-height: 1.4;
+  text-wrap: balance;
   text-shadow: 
     0 1px 12px rgba(255, 255, 255, 0.98),
     0 0 20px rgba(255, 255, 255, 0.9);
@@ -111,7 +135,7 @@
 
 .hero-btn-primary {
   padding: 14px 32px !important;
-  font-size: clamp(15px, 1.5vw, 18px) !important;
+  font-size: clamp(15px, 1.5vw, 17px) !important;
   border-radius: var(--rounded-pill-lg) !important;
   box-shadow: 0 4px 16px rgba(230, 0, 0, 0.35) !important;
 }
@@ -126,7 +150,7 @@
 
 .hero-btn-secondary {
   padding: 14px 32px !important;
-  font-size: clamp(15px, 1.5vw, 18px) !important;
+  font-size: clamp(15px, 1.5vw, 17px) !important;
   border-radius: var(--rounded-pill-lg) !important;
   background-color: rgba(255, 255, 255, 0.96) !important;
   border: 1.5px solid var(--colors-ink) !important;
@@ -139,6 +163,11 @@
 }
 
 @media (max-width: 600px) {
+  .hero-master-container {
+    padding-top: 6rem;
+    padding-bottom: 2.5rem;
+  }
+
   .hero-action-buttons {
     flex-direction: column;
     width: 100%;

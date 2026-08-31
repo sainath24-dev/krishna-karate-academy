@@ -2,7 +2,6 @@ import React from 'react';
 import { AcademyDataProvider } from './context/AcademyDataContext';
 import { ClickSpark } from './components/ui/ClickSpark';
 import { Navigation } from './components/ui/Navigation';
-import { SenseiAdminModal } from './components/admin/SenseiAdminModal';
 import { HeroSection } from './sections/01-Hero';
 import { AboutSection } from './sections/02-About';
 import { FacilitySection } from './sections/03-Facility';
@@ -33,7 +32,6 @@ export default function App() {
             <HallOfFameSection />
             <ContactSection />
           </main>
-          <SenseiAdminModal />
         </div>
       </ClickSpark>
     </AcademyDataProvider>

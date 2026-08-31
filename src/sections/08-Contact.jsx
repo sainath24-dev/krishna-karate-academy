@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
+import { useAcademyData } from '../context/AcademyDataContext';
 import './08-Contact.css';
 
 const QUICK_SCHEDULE_SUMMARY = [
@@ -10,6 +11,7 @@ const QUICK_SCHEDULE_SUMMARY = [
 ];
 
 export function ContactSection() {
+  const { setIsAdminOpen } = useAcademyData();
   const [formData, setFormData] = useState({
     studentName: '',
     parentName: '',
@@ -495,6 +497,14 @@ export function ContactSection() {
             <a href="#classes" className="footer-link">Classes & Fees</a>
             <a href="#tournaments" className="footer-link">Tournaments</a>
             <a href="#hall-of-fame" className="footer-link">Hall of Fame</a>
+            <button
+              type="button"
+              className="footer-admin-btn"
+              onClick={() => setIsAdminOpen(true)}
+              title="Open Sensei Admin Portal"
+            >
+              🔒 Sensei Portal
+            </button>
           </div>
         </div>
       </footer>

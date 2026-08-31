@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAcademyData } from '../context/AcademyDataContext';
 import { TournamentCountdown } from '../components/custom/TournamentCountdown';
 import './06-MatchesBelts.css';
 
@@ -17,63 +18,22 @@ const BELT_ROADMAP = [
   { rank: 12, name: 'Black Belt (1st Dan)', color: '#111827', textColor: '#ffffff', border: '#e60000', tag: 'Mastery', desc: 'Official Board Certification · 5 Years of Dedication' }
 ];
 
-const BELT_TIERS = [
-  {
-    tierName: '3RD DEGREE BLACK BELT (CHIEF INSTRUCTOR)',
-    requirement: '15+ years of dedicated practice, international gold medal distinction, and founder of KKA Bidar',
-    students: [
-      {
-        name: 'Krishna Kashinath Waldoddi',
-        title: 'Founder & Chief Instructor',
-        badge: '3RD DAN',
-        status: 'Chennai Intl Gold Medalist',
-        exp: '15+ Years'
-      }
-    ]
-  },
-  {
-    tierName: '1ST DEGREE BLACK BELT (ACADEMY GRADUATES)',
-    requirement: '5 Years of dedicated training through all 12 belt stages, rigorous Kata mastery, and board examination',
-    students: [
-      {
-        name: 'KKA Black Belt Graduate',
-        title: 'Black Belt · 1st Degree',
-        badge: '1ST DAN',
-        status: 'Certified Dan 1',
-        exp: '5 Years Trained'
-      },
-      {
-        name: 'KKA Black Belt Graduate',
-        title: 'Black Belt · 1st Degree',
-        badge: '1ST DAN',
-        status: 'Certified Dan 1',
-        exp: '5 Years Trained'
-      },
-      {
-        name: 'KKA Black Belt Graduate',
-        title: 'Black Belt · 1st Degree',
-        badge: '1ST DAN',
-        status: 'Certified Dan 1',
-        exp: '5 Years Trained'
-      }
-    ]
-  }
-];
-
 export function MatchesBeltsSection() {
+  const { tournaments, blackBelts } = useAcademyData();
+  const activeEvent = tournaments[0] || { title: 'Hyderabad Tournament (5 – 6 September)' };
+
   return (
-    <section id="tournaments" className="matches-belts-section-wrapper">
+    <section id="tournaments" className="content-band-soft matches-belts-section-wrapper">
       <div className="section-wrapper">
-        {/* PART 1: UPCOMING TOURNAMENTS (FEATURING HYDERABAD 5-6 SEPT) */}
-        <div className="tournaments-countdown-container">
+        {/* PART 1: TOURNAMENT COUNTDOWN (UPCOMING EVENT) */}
+        <div className="tournament-feature-block">
           <div className="section-heading-block">
             <span className="eyebrow-uppercase">UPCOMING TOURNAMENTS</span>
             <h2 className="display-xl tournaments-heading">
-              HYDERABAD TOURNAMENT (5 – 6 SEPTEMBER)
+              {activeEvent.title.toUpperCase()}
             </h2>
             <p className="body-md tournaments-sub">
-              Our students actively prepare to represent Bidar at the upcoming <strong>Hyderabad Tournament on 5 – 6 September</strong>, 
-              as well as State and National Championships.
+              Our students actively prepare to represent Bidar at upcoming State, National, and International Championships.
             </p>
           </div>
 
@@ -133,12 +93,12 @@ export function MatchesBeltsSection() {
           </div>
 
           <div className="belt-tiers-list">
-            {BELT_TIERS.map((tier, tierIdx) => (
+            {blackBelts.map((tier, tierIdx) => (
               <div key={tierIdx} className="tier-group">
                 <div className="tier-group-header">
                   <div className="tier-badge-strip">
                     <span className="tier-icon">🎖️</span>
-                    <h4 className="tier-name">{tier.tierName}</h4>
+                    <h4 className="tier-name">{tier.tier || tier.tierName}</h4>
                   </div>
                   <p className="tier-requirement body-sm">{tier.requirement}</p>
                 </div>
@@ -147,8 +107,8 @@ export function MatchesBeltsSection() {
                   {tier.students.map((student, sIdx) => (
                     <div key={sIdx} className="card-content-soft tier-student-card">
                       <div className="student-card-top">
-                        <span className="badge-chip badge-chip-red">{student.badge}</span>
-                        {student.badge === '3RD DAN' ? (
+                        <span className="badge-chip badge-chip-red">{student.badge || 'BLACK BELT'}</span>
+                        {student.name.toLowerCase().includes('krishna') ? (
                           <img src="/sensei-krishna.jpg" alt="Sensei Krishna" className="student-badge-photo" />
                         ) : (
                           <span className="student-icon">🥋</span>
@@ -156,12 +116,12 @@ export function MatchesBeltsSection() {
                       </div>
                       <h5 className="student-name">{student.name}</h5>
                       <p className="student-title body-sm-strong">{student.title}</p>
-                      <p className="student-status caption">{student.status} · {student.exp}</p>
+                      <p className="student-status caption">{student.status}</p>
                     </div>
                   ))}
                 </div>
 
-                {tierIdx < BELT_TIERS.length - 1 && <hr className="divider-on-light tier-divider" />}
+                {tierIdx < blackBelts.length - 1 && <hr className="divider-on-light tier-divider" />}
               </div>
             ))}
           </div>

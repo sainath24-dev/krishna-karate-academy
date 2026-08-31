@@ -469,3 +469,26 @@
 .footer-link:hover {
   color: var(--colors-primary);
 }
+
+.footer-admin-btn {
+  background: #f7f7f8;
+  color: var(--colors-ink);
+  border: 1px solid var(--colors-border);
+  font-family: var(--font-family);
+  font-size: clamp(12px, 1.1vw, 13.5px);
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--rounded-pill-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.footer-admin-btn:hover {
+  background-color: var(--colors-primary);
+  color: #ffffff;
+  border-color: var(--colors-primary);
+  box-shadow: 0 2px 8px rgba(230, 0, 0, 0.25);
+}

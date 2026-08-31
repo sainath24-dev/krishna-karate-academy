@@ -1,43 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { useAcademyData } from '../../context/AcademyDataContext';
 import './TournamentCountdown.css';
 
-const TOURNAMENTS = [
-  {
-    id: 'hyd-tourn-2026',
-    title: 'Hyderabad Tournament',
-    subtitle: 'State & Open Invitational Martial Arts Championship · 5 – 6 September',
-    targetDate: new Date('2026-09-05T09:00:00'),
-    location: 'Hyderabad, Telangana',
-    categories: ['Kata Forms Division', 'Sparring / Kumite', 'Junior & Senior Cadet Championship'],
-    status: 'Upcoming Tournament · 5 - 6 September'
-  },
-  {
-    id: 'aurangabad-nat-2026',
-    title: 'All-India National Karate Championship — Aurangabad',
-    subtitle: 'National Level Federation Championship',
-    targetDate: new Date('2026-12-05T08:30:00'),
-    location: 'District Sports Complex, Aurangabad, Maharashtra',
-    categories: ['National Cadet Forms', 'Team Sparring Championship', 'Senior Open Weight'],
-    status: 'Intensive Training Camp Active'
-  },
-  {
-    id: 'karnataka-state-2026',
-    title: 'Karnataka State Martial Arts Championship',
-    subtitle: 'Annual State Championship Tournament',
-    targetDate: new Date('2026-10-18T09:00:00'),
-    location: 'Indoor Stadium, Bidar / Bengaluru, Karnataka',
-    categories: ['All 12 Belt Divisions (White to Black Belt)', 'Kids Under-18 Forms & Sparring'],
-    status: 'Registration Open'
-  }
-];
-
 export function TournamentCountdown({ className = '' }) {
-  const [selectedTournament, setSelectedTournament] = useState(TOURNAMENTS[0]);
+  const { tournaments } = useAcademyData();
+  const [selectedTournament, setSelectedTournament] = useState(tournaments[0] || null);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
+    if (tournaments && tournaments.length > 0) {
+      // Keep selected or reset to first
+      setSelectedTournament((prev) => {
+        const found = tournaments.find((t) => t.id === prev?.id);
+        return found || tournaments[0];
+      });
+    }
+  }, [tournaments]);
+
+  useEffect(() => {
+    if (!selectedTournament) return;
+
     const calculateTime = () => {
-      const difference = selectedTournament.targetDate.getTime() - new Date().getTime();
+      const target = new Date(selectedTournament.targetDate).getTime();
+      const difference = target - new Date().getTime();
 
       if (difference > 0) {
         setTimeLeft({
@@ -58,11 +43,13 @@ export function TournamentCountdown({ className = '' }) {
 
   const padZero = (n) => String(n).padStart(2, '0');
 
+  if (!selectedTournament) return null;
+
   return (
     <div className={`tournament-countdown-block ${className}`}>
       {/* Tournament Selector Tabs */}
       <div className="countdown-tab-list" role="tablist">
-        {TOURNAMENTS.map((t) => (
+        {tournaments.map((t) => (
           <button
             key={t.id}
             type="button"
@@ -120,7 +107,7 @@ export function TournamentCountdown({ className = '' }) {
           <div className="meta-col">
             <span className="meta-label">PARTICIPATING CATEGORIES</span>
             <div className="meta-tags">
-              {selectedTournament.categories.map((cat, i) => (
+              {(selectedTournament.categories || ['Kata Forms', 'Kumite Sparring']).map((cat, i) => (
                 <span key={i} className="meta-tag mono-text">
                   {cat}
                 </span>

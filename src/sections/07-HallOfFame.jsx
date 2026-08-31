@@ -49,7 +49,7 @@ export function HallOfFameSection() {
             Hall of Fame & Medal Winners
           </h2>
           <p className="body-md section-subtitle">
-            Celebrating our students who brought home Gold and Silver medals 
+            Celebrating our students who brought home Gold and Silver medals
             representing Krishna Karate Academy Bidar across National and International championships.
           </p>
         </div>

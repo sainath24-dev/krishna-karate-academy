@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { useAcademyData } from '../context/AcademyDataContext';
+import { validatePhone, validateEmail, sanitizeInput } from '../utils/security';
 import './08-Contact.css';
 
 const QUICK_SCHEDULE_SUMMARY = [
@@ -24,6 +25,8 @@ export function ContactSection() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [honeypot, setHoneypot] = useState('');
+  const formLoadTimeRef = React.useRef(Date.now());
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,24 +59,50 @@ export function ContactSection() {
     return `https://api.whatsapp.com/send?phone=919620303207&text=${encodeURIComponent(messageText)}`;
   };
 
-  const sanitize = (str, maxLen = 150) => {
-    if (!str) return '';
-    return String(str)
-      .trim()
-      .replace(/[<>]/g, '')
-      .slice(0, maxLen);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const cleanStudentName = sanitize(formData.studentName, 80);
-    const cleanPhone = sanitize(formData.phone, 20);
-    const cleanParentName = sanitize(formData.parentName, 80);
-    const cleanEmail = sanitize(formData.email, 100);
-    const cleanMessage = sanitize(formData.message, 300);
+
+    // 1. Bot Honeypot Trap Check
+    if (honeypot) {
+      // Silently drop bot submission
+      setFormSubmitted(true);
+      return;
+    }
+
+    // 2. Submission Timing Trap (Bots submit within milliseconds)
+    const timeElapsed = Date.now() - formLoadTimeRef.current;
+    if (timeElapsed < 1200) {
+      setFormSubmitted(true);
+      return;
+    }
+
+    // 3. Client Rate Limit Check (Prevent rapid form spamming)
+    const lastSubmitTime = Number(sessionStorage.getItem('kka_last_lead_submit') || '0');
+    if (Date.now() - lastSubmitTime < 15000) {
+      setErrorMsg('Please wait a moment before submitting another request.');
+      return;
+    }
+
+    const cleanStudentName = sanitizeInput(formData.studentName, 80);
+    const cleanPhone = sanitizeInput(formData.phone, 20);
+    const cleanParentName = sanitizeInput(formData.parentName, 80);
+    const cleanEmail = sanitizeInput(formData.email, 100);
+    const cleanMessage = sanitizeInput(formData.message, 300);
 
     if (!cleanStudentName || !cleanPhone) {
       setErrorMsg('Please fill in required fields (Student Name, Phone Number).');
+      return;
+    }
+
+    // 4. Validate Phone format
+    if (!validatePhone(cleanPhone)) {
+      setErrorMsg('Please enter a valid 10-digit phone/mobile number.');
+      return;
+    }
+
+    // 5. Validate Email format if provided
+    if (cleanEmail && !validateEmail(cleanEmail)) {
+      setErrorMsg('Please enter a valid email address.');
       return;
     }
 
@@ -88,6 +117,7 @@ export function ContactSection() {
 
     setErrorMsg('');
     setIsSubmitting(true);
+    sessionStorage.setItem('kka_last_lead_submit', String(Date.now()));
 
     // Save lead backup in localStorage for instant access
     try {
@@ -326,6 +356,18 @@ export function ContactSection() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="dojo-lead-form">
+                  {/* Invisible Honeypot Anti-Bot Trap */}
+                  <input
+                    type="text"
+                    name="contact_verification_hp"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    style={{ display: 'none', position: 'absolute', left: '-9999px' }}
+                    tabIndex="-1"
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+
                   <div className="form-header-box">
                     <h3 className="display-xs form-title">REGISTER FOR A FREE CLASS</h3>
                     <p className="body-sm form-sub">
